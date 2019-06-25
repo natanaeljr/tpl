@@ -1,6 +1,6 @@
 ---
 
-Action= Enum{"merge": 0, "rebase": 1, "commit": 2} | Int{0-2}
+Action= Enum{"merge": 0, "rebase": 1, "commit": 2}
 
 Status= Enum{
   "ok": 0
@@ -11,7 +11,7 @@ Job= {
   "before_script"= [Text]
   "script"= [Text]
   "after_script"= [Text]
-  "action"= Action{"undo"}
+  "action"= Action{"undo": 3} | Int{0-3}
 }
 
 ~<key>= Job

@@ -1,0 +1,21 @@
+upperCaseLetter = "A" ... "Z";
+lowerCaseLetter = "a" ... "Z";
+letter = upperCaseLetter | lowerCaseLetter;
+
+decimalDigit = "0" ... "9";
+octalDigit = "0" ... "7";
+hexDigit = "0" ... "9" | "A" ... "F" | "a" ... "f";
+
+identifier = letter | "_", { letter | "_"};
+
+typeName = identifier;
+typeDefine = typeName, "=", [typeName], "{",  ;
+typeStructure = [typeName], "{", {fieldDeclare, fieldDelimiter}, "}";
+type = typeName | typeStructure;
+
+sequence = "[", type, "]";
+
+fieldName = identifier;
+fieldDeclare = [fieldOption], '"', fieldName, '"', "=", type {"|", type }, [":", fieldValue];
+fieldOption = "!", "~";
+fieldDelimiter = ",", ? \n ?;
