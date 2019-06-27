@@ -15,15 +15,16 @@ class Token {
         /* specifics */
         OPERATOR,   // ! ~ - = : | ..
         BRACKET,    // () [] {} <>
-	SEPARATOR,  // ,
+        SEPARATOR,  // ,
         /* other */
         EMBEDDED,  // embeded char sequence, `...`
     };
-    // non-tokens: # \
+    //< non-tokens: # '\'
 };
 
 // see: https://yaml.org/refcard.html
 
+// PrimitiveTypes ?
 // SemanticTypes ?
 
 } /* namespace tpl */
