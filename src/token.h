@@ -1,3 +1,4 @@
+#pragma once
 
 namespace tpl {
 
@@ -20,6 +21,22 @@ class Token {
         EMBEDDED,  // embeded char sequence, `...`
     };
     //< non-tokens: # '\'
+
+    Token(Type type) : type_{ type }
+    {
+    }
+
+    ~Token()
+    {
+    }
+
+    Type type()
+    {
+        return type_;
+    }
+
+   private:
+    Type type_;
 };
 
 // see: https://yaml.org/refcard.html
