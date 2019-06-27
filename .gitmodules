@@ -1,0 +1,3 @@
+[submodule "third-party/enum_t"]
+	path = third-party/enum_t
+	url = https://github.com/natanaeljr/enum_t.git
