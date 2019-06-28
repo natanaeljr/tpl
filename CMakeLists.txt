@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(ger VERSION 0.1 LANGUAGES CXX C)
+project(tpl VERSION 0.1 LANGUAGES CXX C)
 
 #########################################################################################
 # Configs
@@ -23,6 +23,13 @@ set(TPL_BINARY "tpl")
 #########################################################################################
 # Dependencies
 #########################################################################################
+# Conan
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+include_directories(${CONAN_INCLUDE_DIRS})
+add_definitions(${CONAN_DEFINES})
+link_libraries(${CONAN_LIBS})
+# njr::enum_t
 include_directories(third-party/enum_t/include)
 
 #########################################################################################
@@ -32,3 +39,10 @@ include_directories(${TPL_INCLUDE_DIR})
 add_executable(${TPL_BINARY}
     src/lexer.cc
 )
+
+#########################################################################################
+# Testing
+#########################################################################################
+if(BUILD_TESTING)
+    add_subdirectory(test)
+endif()

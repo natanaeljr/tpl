@@ -1,0 +1,7 @@
+[requires]
+gtest/1.8.1@bincrafters/stable
+gsl_microsoft/2.0.0@bincrafters/stable
+fmt/5.3.0@bincrafters/stable
+
+[generators]
+cmake
