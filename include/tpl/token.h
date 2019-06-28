@@ -28,7 +28,7 @@ class Token {
         OCTAL,        // 0c (0-9 a-z A-Z)
         FLOAT,        // 0-9 . 0-9 f e [-|+] 0-9
         /* specifics */
-        OPERATOR,   // ! ~ - = : | ..
+        OPERATOR,   // ! ~ = : | ..
         BRACKET,    // () [] {} <>
         SEPARATOR,  // ,
         /* other */
@@ -56,6 +56,8 @@ class Token {
      * case of a keyword as a token, the pattern is just the sequence of characters that
      * form the keyword. For identifiers and some other tokens, the pattern is more
      * complex structure that is matched by many strings.
+     *
+     * \return Token Type enumerator wrapped in an enum utility class.
      */
     ::njr::enum_t<Type> type() const { return type_; }
 
@@ -65,6 +67,8 @@ class Token {
      * Lexeme is sequence of characters in the source program that matches the pattern for
      * this token type and is identified by the lexical analyzer as an instance of this
      * token.
+     *
+     * \return Lexeme string value.
      */
     const std::string& lexeme() const { return lexeme_; }
 
