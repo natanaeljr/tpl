@@ -52,7 +52,7 @@ class Lexer {
                 }
                 /* OPERATORS */
                 case ':': {
-                    std::string str = { static_cast<char>(c), '\0' };
+                    std::string str = { c, '\0' };
                     Token token = { Token::Type::OPERATOR, std::move(str) };
                     tokens.emplace_back(std::move(token));
                 }
@@ -84,7 +84,7 @@ class Lexer {
             if (c == terminator && last_c != '\\') {
                 break;
             }
-            ss << static_cast<char>(c);
+            ss << c;
         }
 
         return ss.str();
