@@ -17,8 +17,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
 # Global Defines
 #########################################################################################
 set(TPL_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
-set(TPL_LIBRARY "tpllib")
-set(TPL_BINARY "tpl")
+set(TPL_LIBRARY "tpl")
+set(TPL_BINARY "tplc")
+set(TPL_TEST "tpl-test")
 
 #########################################################################################
 # Dependencies
@@ -36,9 +37,15 @@ include_directories(third-party/enum_t/include)
 # Project
 #########################################################################################
 include_directories(${TPL_INCLUDE_DIR})
-add_executable(${TPL_BINARY}
+add_library(${TPL_LIBRARY}
     src/lexer.cc
 )
+
+add_executable(${TPL_BINARY}
+    src/main.cc
+)
+
+target_link_libraries(${TPL_BINARY} ${TPL_LIBRARY})
 
 #########################################################################################
 # Testing
