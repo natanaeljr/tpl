@@ -37,8 +37,31 @@ include_directories(third-party/enum_t/include)
 # Project
 #########################################################################################
 include_directories(${TPL_INCLUDE_DIR})
+
+set(TPL_LEX_INPUT
+    ${CMAKE_SOURCE_DIR}/src/lex/tpl.l)
+set(TPL_LEX_SOURCES
+    ${CMAKE_BINARY_DIR}/lex.yy.cc)
+add_custom_command(
+    OUTPUT ${TPL_LEX_SOURCES}
+    COMMAND flex++ ${TPL_LEX_INPUT}
+    # WORKING_DIRECTORY src/lex
+    COMMENT "Generating Lexical Scanner")
+add_custom_target(tpl-lex-generate-files DEPENDS ${TPL_LEX_SOURCES} ${TPL_LEX_INPUT})
+set_source_files_properties(${TPL_LEX_SOURCES} PROPERTIES GENERATED TRUE)
+add_library(tpl-lex ${TPL_LEX_SOURCES})
+add_dependencies(tpl-lex tpl-lex-generate-files)
+
 add_library(${TPL_LIBRARY}
     src/lexer.cc
+)
+
+target_link_libraries(${TPL_LIBRARY}
+    tpl-lex
+)
+
+add_dependencies(${TPL_LIBRARY}
+    tpl-lex
 )
 
 add_executable(${TPL_BINARY}
