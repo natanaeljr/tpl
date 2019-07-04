@@ -2,8 +2,28 @@
 #include "tpl/token.h"
 %}
 
-decimal [-+][1-9][0-9]*
+%option yylineno
+%option noyywrap
+
+string \"[^\n"]+\"
 
 %%
-decimal  { return static_cast<int>(tpl::Token::Type::DECIMAL); }
+
+[ \t]    /* ignore white spaces */
+
+{string} {printf("got a string: %s", YYText());}
+
 %%
+
+int yyFlexLexer::yywrap()
+{
+    return 0;
+}
+
+int main()
+{
+    yyFlexLexer lexer{};
+    while (lexer.yylex() != 0)
+        ;
+    return 0;
+}
