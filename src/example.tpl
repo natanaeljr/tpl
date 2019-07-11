@@ -25,4 +25,9 @@ Remote= {
   "http-passwd"= Text
 }
 
+Remote{
+  "name": none
+  !"url"
+}
+
 "remotes"= [Remote] | [Remote{"port":29418, ~"http-passwd", "proxy"= Text, !"url"}] | Text{a..z} | Null | Empty
