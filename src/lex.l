@@ -1,8 +1,7 @@
 %{
-#include "tpl/token.h"
+#include "parse.tab.hh"
 %}
 
-%option yylineno
 %option noyywrap
 
 string \"[^\n"]+\"
@@ -11,6 +10,6 @@ string \"[^\n"]+\"
 
 [ \t]    /* ignore white spaces */
 
-{string} {printf("got a string: %s", YYText());}
+{string} {printf("got a string: %s", YYText()); return yy::parser::symbol_type (yy::parser::token::STRING, YYText()) }
 
 %%

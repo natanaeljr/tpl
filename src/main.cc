@@ -1,11 +1,11 @@
-#include "fmt/core.h"
-#include "FlexLexer.h"
 
+#include "FlexLexer.h"
+#include "parse.tab.hh"
+
+#include "fmt/core.h"
 
 int main()
 {
-    yyFlexLexer lexer{};
-    while (lexer.yylex() != 0)
-        ;
-    return 0;
+    yy::parser parse;
+    parse.parse();
 }
