@@ -49,8 +49,17 @@ typedef tpl::Parser::token_type token_type;
 %}
 
 /***************************************************************************************/
+/*** Regular Expressions Part ***/
 
-%% /*** Regular Expressions Part ***/
+DECIMAL         0|[1-9][0-9]*
+OCTAL           0[0-7]+
+HEXADECIMAL     0(x|X)[a-fA-F0-9]
+INTEGER         {DECIMAL}|{OCTAL}|{HEXADECIMAL}
+FLOAT           {DECIMAL}*"."{DECIMAL}+f
+
+/***************************************************************************************/
+
+%%
 
 %{
 /* code to place at the beginning of yylex() */
